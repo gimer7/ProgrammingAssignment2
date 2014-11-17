@@ -11,6 +11,7 @@
 
 makeCacheMatrix <- function(x = matrix()) {
   inv <- NULL
+  # setter of the matrix
   set <- function(mat) {
     # When a new matrix is inserted the inverse must be setted to NULL
     ## Note that all the inner functions use the superassignment operator
@@ -18,8 +19,11 @@ makeCacheMatrix <- function(x = matrix()) {
     x <<- mat
     inv <<- NULL
   }
+  # getter of the matrix
   get <- function() x
+  # setter of the inverse of the matrix
   setinverse <- function(inverse) inv <<- inverse
+  # getter of the inverse of the matrix
   getinverse <- function() inv
   # It returns the list which contains the 4 functions mentioned above
   list(set = set, get = get,
@@ -43,5 +47,6 @@ cacheSolve <- function(x, ...) {
   data <- x$get()
   inv <- solve(data, ...)
   x$setinverse(inv)
+  # returns the inverse of the matrix
   inv
 }
